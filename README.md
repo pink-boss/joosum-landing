@@ -1,3 +1,57 @@
+# Joosum Static Landing Page
+
+주섬 서비스의 정적 랜딩 페이지입니다.
+
+## 기능
+
+- 반응형 디자인 (모바일, 태블릿, PC)
+- 커스텀 색상 시스템
+- 앱 다운로드 모달
+- 문의하기 폼
+- 이메일 자동 입력 기능
+
+## SEO 및 성능 최적화
+
+- **메타데이터 최적화**: Open Graph, Twitter Cards, 구조화된 데이터
+- **성능 최적화**: 동적 임포트, 이미지 최적화, 폰트 최적화
+- **접근성**: ARIA 라벨, 포커스 관리, 키보드 네비게이션
+- **SEO**: sitemap.xml, robots.txt, 구조화된 데이터 (JSON-LD)
+- **Web Vitals**: 성능 모니터링 및 최적화
+
+## 이메일 자동 입력 기능
+
+`app.joosum.com`에서 문의하기 페이지로 이동할 때 사용자의 이메일을 자동으로 입력할 수 있습니다.
+
+### 사용법
+
+```javascript
+// app.joosum.com에서 사용하는 방법
+import { redirectToContactWithEmail } from "./utils/deviceUtils";
+
+// 사용자 이메일과 함께 문의하기 페이지로 이동
+redirectToContactWithEmail("user@example.com");
+```
+
+### URL 직접 사용
+
+```
+https://your-domain.com/contact?email=user@example.com
+```
+
+이메일 파라미터는 자동으로 URL 인코딩/디코딩됩니다.
+
+## 개발
+
+```bash
+npm run dev
+```
+
+## 빌드
+
+```bash
+npm run build
+```
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
