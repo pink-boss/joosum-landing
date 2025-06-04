@@ -136,7 +136,7 @@ export default function AppDownloadModal({
           <div className="hidden md:flex flex-1 items-center justify-center gap-8 mb-6">
             {/* iOS QR코드 */}
             <div className="flex flex-col items-center">
-              <div className="w-[124px] h-[124px] bg-neutral-200 rounded-xl mb-3 flex items-center justify-center">
+              <div className="w-[124px] h-[124px] bg-text-10 rounded-xl mb-3 flex items-center justify-center">
                 <div className="w-20 h-20 bg-neutral-400 rounded-lg flex items-center justify-center">
                   <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
                     <rect x="2" y="2" width="6" height="6" fill="black" />
@@ -201,7 +201,7 @@ export default function AppDownloadModal({
 
             {/* Android QR코드 */}
             <div className="flex flex-col items-center">
-              <div className="w-[124px] h-[124px] bg-neutral-200 rounded-xl mb-3 flex items-center justify-center">
+              <div className="w-[124px] h-[124px] bg-text-10 rounded-xl mb-3 flex items-center justify-center">
                 <div className="w-20 h-20 bg-neutral-400 rounded-lg flex items-center justify-center">
                   <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
                     <rect x="2" y="2" width="6" height="6" fill="black" />

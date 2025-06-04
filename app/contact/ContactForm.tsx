@@ -24,7 +24,7 @@ async function submitContactForm(
   const email = formData.get("email") as string;
   const subject = formData.get("subject") as string;
   const content = formData.get("content") as string;
-  const additionalInfo = formData.get("additionalInfo") as string;
+  // const additionalInfo = formData.get("additionalInfo") as string;
   const privacy = formData.get("privacy") as string;
 
   // 유효성 검사
@@ -94,7 +94,7 @@ function SubmitConfirmModal({
             </button>
             <button
               onClick={onConfirm}
-              className="flex-1 h-12 md:h-14 bg-primary-600 text-white rounded-lg font-bold text-sm md:text-base hover:opacity-80 transition-opacity"
+              className="flex-1 h-12 md:h-14 bg-primary-500 text-white rounded-lg font-bold text-sm md:text-base hover:opacity-80 transition-opacity"
             >
               확인
             </button>
@@ -130,7 +130,7 @@ function SubmitCompleteModal({
           </div>
           <button
             onClick={onClose}
-            className="w-full h-12 md:h-14 bg-primary-600 text-white rounded-lg font-bold text-sm md:text-base hover:opacity-80 transition-opacity"
+            className="w-full h-12 md:h-14 bg-primary-500 text-white rounded-lg font-bold text-sm md:text-base hover:opacity-80 transition-opacity"
           >
             확인
           </button>
@@ -212,7 +212,7 @@ export default function ContactForm() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="이메일 주소를 입력해주세요."
-                className="w-full h-11 md:h-12 px-4 md:px-5 border border-neutral-200 rounded-lg text-sm md:text-base placeholder-neutral-500 focus:outline-none focus:border-primary-600"
+                className="w-full h-11 md:h-12 px-4 md:px-5 border border-text-10 rounded-lg text-sm md:text-base placeholder-neutral-500 focus:outline-none focus:border-primary-500"
                 required
               />
               <p className="mt-2 text-sm md:text-base text-neutral-500 font-medium">
@@ -241,7 +241,7 @@ export default function ContactForm() {
                 type="text"
                 name="subject"
                 placeholder="제목을 입력해주세요."
-                className="w-full h-11 md:h-12 px-4 md:px-5 border border-neutral-200 rounded-lg text-sm md:text-base placeholder-neutral-500 focus:outline-none focus:border-primary-600"
+                className="w-full h-11 md:h-12 px-4 md:px-5 border border-text-10 rounded-lg text-sm md:text-base placeholder-neutral-500 focus:outline-none focus:border-primary-500"
                 required
               />
               {state.errors?.subject && (
@@ -266,7 +266,7 @@ export default function ContactForm() {
               <textarea
                 name="content"
                 placeholder="오류 신고 시 오류 발생 당시 사용한 OS/브라우저 정보를 남겨주세요."
-                className="w-full px-4 md:px-5 py-3 border border-neutral-200 rounded-lg text-sm md:text-base placeholder-neutral-500 focus:outline-none focus:border-primary-600 resize-none h-32 md:h-48"
+                className="w-full px-4 md:px-5 py-3 border border-text-10 rounded-lg text-sm md:text-base placeholder-neutral-500 focus:outline-none focus:border-primary-500 resize-none h-32 md:h-48"
                 maxLength={3000}
                 onChange={(e) => setContentLength(e.target.value.length)}
                 required
@@ -294,7 +294,7 @@ export default function ContactForm() {
                 type="text"
                 name="additionalInfo"
                 placeholder="오류 신고 시 오류 발생 당시 사용한 OS/브라우저 정보를 남겨주세요."
-                className="w-full h-11 md:h-12 px-4 md:px-5 border border-neutral-200 rounded-lg text-sm md:text-base placeholder-neutral-500 focus:outline-none focus:border-primary-600"
+                className="w-full h-11 md:h-12 px-4 md:px-5 border border-text-10 rounded-lg text-sm md:text-base placeholder-neutral-500 focus:outline-none focus:border-primary-500"
               />
             </div>
           </div>
@@ -318,7 +318,7 @@ export default function ContactForm() {
                     value="agreed"
                     checked={privacyChecked}
                     onChange={(e) => setPrivacyChecked(e.target.checked)}
-                    className="w-5 h-5 appearance-none border-2 border-primary-600 rounded bg-white checked:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-1"
+                    className="w-5 h-5 appearance-none border-2 border-primary-500 rounded bg-white checked:bg-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1"
                     required
                   />
                   {privacyChecked && (
@@ -359,7 +359,7 @@ export default function ContactForm() {
             <button
               type="submit"
               disabled={isPending}
-              className="w-full max-w-[335px] h-12 md:h-14 bg-primary-600 text-white rounded-lg font-semibold text-base md:text-lg hover:opacity-80 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full max-w-[335px] h-12 md:h-14 bg-primary-500 text-white rounded-lg font-semibold text-base md:text-lg hover:opacity-80 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isPending ? "제출 중..." : "제출하기"}
             </button>

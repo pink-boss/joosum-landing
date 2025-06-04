@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import WebVitals from "./components/WebVitals";
+import Footer from "./components/sections/Footer";
+import StructuredData from "./components/StructuredData";
+import Navigation from "./components/sections/Navigation";
 
 const pretendard = localFont({
   src: [
@@ -120,7 +123,12 @@ export default function RootLayout({
     <html lang="ko">
       <body className={`${pretendard.variable} antialiased`}>
         <WebVitals />
-        {children}
+        <StructuredData />
+        <main className="w-full min-h-screen bg-white">
+          <Navigation />
+          {children}
+          <Footer />
+        </main>
       </body>
     </html>
   );
