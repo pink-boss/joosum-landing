@@ -18,6 +18,32 @@
 - **SEO**: sitemap.xml, robots.txt, 구조화된 데이터 (JSON-LD)
 - **Web Vitals**: 성능 모니터링 및 최적화
 
+## 이메일 설정
+
+이메일 전송 기능을 사용하려면 [Resend](https://resend.com)에서 API 키를 발급받고 환경변수를 설정해주세요.
+
+### 1. Resend 설정
+
+1. [Resend](https://resend.com)에 가입
+2. API Keys 메뉴에서 새 API 키 생성
+3. 도메인 인증 (선택사항이지만 권장)
+
+### 2. 환경변수 설정
+
+`.env.local` 파일을 생성하고 다음 내용을 추가:
+
+```bash
+RESEND_API_KEY=your_resend_api_key_here
+```
+
+### 3. 발신자 이메일 설정
+
+`app/actions/contact.ts` 파일에서 발신자 이메일을 실제 도메인으로 변경:
+
+```typescript
+from: "contact@yourdomain.com", // 실제 도메인으로 변경
+```
+
 ## 개발
 
 ```bash
