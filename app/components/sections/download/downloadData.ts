@@ -1,16 +1,19 @@
 export interface DownloadStore {
   qr: string;
-  download: string;
+  icon: string;
+  url: string;
 }
 
 export const downloadStores: DownloadStore[] = [
   {
     qr: "/images/ios-qr.png",
-    download: "/images/ios-download.png",
+    icon: "/images/ios-download.png",
+    url: "https://apps.apple.com/kr/app/%EC%A3%BC%EC%84%AC-joosum/id6455258212",
   },
   {
     qr: "/images/aos-qr.png",
-    download: "/images/aos-download.png",
+    icon: "/images/aos-download.png",
+    url: "https://play.google.com/store/apps/details?id=com.joosum.app",
   },
 ];
 

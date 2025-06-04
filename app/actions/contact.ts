@@ -115,7 +115,7 @@ export async function submitContactForm(
 
       const { data, error } = await resend.emails.send({
         from: "noreply@joosum.com",
-        to: ["developerquo@gmail.com"],
+        to: ["pinkjoosum@gmail.com"],
         subject: `[Joosum 문의] ${subject}`,
         html: emailHtml,
         replyTo: email,

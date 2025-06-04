@@ -53,7 +53,7 @@ const PrivacyConsent = forwardRef<HTMLInputElement, PrivacyConsentProps>(
               href="https://joosum.notion.site/a078243be717462296cbe664a121212c"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline hover:text-primary-500 transition-colors"
+              className="underline hover:text-neutral-500 transition-colors"
             >
               내용 전체보기
             </Link>

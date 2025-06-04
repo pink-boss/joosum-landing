@@ -84,8 +84,8 @@ export default function Navigation() {
           <button
             onClick={toggleMenu}
             className={clsx(
-              "flex flex-col justify-center items-center relative z-50",
-              "w-6 h-6 px-[3px] py-1.5",
+              "flex flex-col justify-center items-center relative z-50 cursor-pointer hover:opacity-80 transition-all duration-300",
+              isMenuOpen ? "size-10 p-2" : "size-6 px-[3px] py-1.5",
               "md:hidden"
             )}
           >
@@ -120,7 +120,7 @@ export default function Navigation() {
             <Link
               href="/contact"
               className={clsx(
-                "text-neutral-600 hover:text-primary-500 transition-colors",
+                "text-neutral-600 hover:text-neutral-550 transition-colors cursor-pointer",
                 "text-base",
                 "lg:text-lg"
               )}
@@ -130,7 +130,7 @@ export default function Navigation() {
             <button
               onClick={openModal}
               className={clsx(
-                "bg-primary-400 text-white rounded-lg font-semibold hover:bg-primary-500 transition-colors",
+                "bg-primary-400 text-white rounded-lg font-semibold hover:bg-primary-500 transition-colors cursor-pointer",
                 "px-4 py-2 text-base",
                 "lg:px-5 lg:py-2.5 lg:text-lg"
               )}
@@ -140,7 +140,7 @@ export default function Navigation() {
             <button
               onClick={openJoosumApp}
               className={clsx(
-                "bg-primary-500 text-white rounded-lg font-semibold hover:bg-primary-700 transition-colors",
+                "bg-primary-500 text-white rounded-lg font-semibold hover:bg-primary-700 transition-colors cursor-pointer",
                 "px-5 py-2 text-base",
                 "lg:px-6 lg:py-2.5 lg:text-lg"
               )}
@@ -170,7 +170,7 @@ export default function Navigation() {
               <Link
                 href="/contact"
                 onClick={() => setIsMenuOpen(false)}
-                className="text-text-80 text-[28px] font-extrabold"
+                className="text-text-80 text-[28px] font-extrabold cursor-pointer hover:text-primary-400 transition-colors"
               >
                 문의하기
               </Link>
@@ -179,13 +179,13 @@ export default function Navigation() {
                   setIsMenuOpen(false);
                   openJoosumApp();
                 }}
-                className="text-text-80 text-[28px] font-extrabold"
+                className="text-text-80 text-[28px] font-extrabold cursor-pointer hover:text-primary-400 transition-colors"
               >
                 주섬 시작하기
               </button>
               <button
                 onClick={openModal}
-                className="text-text-80 text-[28px] font-extrabold"
+                className="text-text-80 text-[28px] font-extrabold cursor-pointer hover:text-primary-400 transition-colors"
               >
                 앱 다운로드
               </button>

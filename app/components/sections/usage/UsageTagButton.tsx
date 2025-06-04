@@ -15,7 +15,7 @@ export default function UsageTagButton({
     <button
       onClick={onClick}
       className={clsx(
-        "rounded-full font-bold transition-colors",
+        "rounded-full font-bold transition-colors cursor-pointer",
         "px-4 py-2 text-base",
         "md:px-6 md:py-3 md:text-lg",
         "lg:px-5 lg:py-3 lg:text-[24px]",
