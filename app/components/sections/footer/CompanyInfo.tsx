@@ -27,7 +27,7 @@ export default function CompanyInfo() {
             </h4>
             <p
               className={clsx(
-                "text-neutral-500",
+                "text-neutral-575",
                 "text-sm",
                 "md:text-xs",
                 "lg:text-[16px]"
@@ -64,7 +64,7 @@ export default function CompanyInfo() {
               </span>
               <span
                 className={clsx(
-                  "text-neutral-600",
+                  "text-neutral-525",
                   "text-base",
                   "md:text-base",
                   "lg:text-[16px]"

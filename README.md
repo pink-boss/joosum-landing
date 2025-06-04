@@ -18,28 +18,6 @@
 - **SEO**: sitemap.xml, robots.txt, 구조화된 데이터 (JSON-LD)
 - **Web Vitals**: 성능 모니터링 및 최적화
 
-## 이메일 자동 입력 기능
-
-`app.joosum.com`에서 문의하기 페이지로 이동할 때 사용자의 이메일을 자동으로 입력할 수 있습니다.
-
-### 사용법
-
-```javascript
-// app.joosum.com에서 사용하는 방법
-import { redirectToContactWithEmail } from "./utils/deviceUtils";
-
-// 사용자 이메일과 함께 문의하기 페이지로 이동
-redirectToContactWithEmail("user@example.com");
-```
-
-### URL 직접 사용
-
-```
-https://your-domain.com/contact?email=user@example.com
-```
-
-이메일 파라미터는 자동으로 URL 인코딩/디코딩됩니다.
-
 ## 개발
 
 ```bash

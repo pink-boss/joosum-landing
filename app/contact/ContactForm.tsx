@@ -1,168 +1,68 @@
 "use client";
 
-import { useActionState, useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
-
-// 폼 상태 타입 정의
-interface FormState {
-  success?: boolean;
-  error?: string;
-  errors?: {
-    email?: string[];
-    subject?: string[];
-    content?: string[];
-    privacy?: string[];
-  };
-}
-
-// 서버 액션 시뮬레이션 (실제로는 서버에서 처리)
-async function submitContactForm(
-  prevState: FormState,
-  formData: FormData
-): Promise<FormState> {
-  // 폼 데이터 추출
-  const email = formData.get("email") as string;
-  const subject = formData.get("subject") as string;
-  const content = formData.get("content") as string;
-  // const additionalInfo = formData.get("additionalInfo") as string;
-  const privacy = formData.get("privacy") as string;
-
-  // 유효성 검사
-  const errors: FormState["errors"] = {};
-
-  if (!email || !email.includes("@")) {
-    errors.email = ["올바른 이메일 주소를 입력해주세요."];
-  }
-
-  if (!subject || subject.trim().length === 0) {
-    errors.subject = ["제목을 입력해주세요."];
-  }
-
-  if (!content || content.trim().length === 0) {
-    errors.content = ["문의내용을 입력해주세요."];
-  }
-
-  if (!privacy) {
-    errors.privacy = ["개인정보 수집 및 이용에 동의해주세요."];
-  }
-
-  if (Object.keys(errors).length > 0) {
-    return { errors };
-  }
-
-  // 제출 처리 시뮬레이션 (2초 지연)
-  await new Promise((resolve) => setTimeout(resolve, 2000));
-
-  return { success: true };
-}
-
-// 제출 확인 모달 컴포넌트
-function SubmitConfirmModal({
-  isOpen,
-  onCancel,
-  onConfirm,
-}: {
-  isOpen: boolean;
-  onCancel: () => void;
-  onConfirm: () => void;
-}) {
-  if (!isOpen) return null;
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
-      <div
-        className="absolute inset-0 bg-black bg-opacity-[0.82]"
-        onClick={onCancel}
-      />
-      <div className="relative bg-white rounded-[10px] w-[90vw] max-w-[422px] h-auto min-h-[254px] p-4 md:p-5">
-        <div className="flex flex-col h-full">
-          <div className="flex-1 flex flex-col items-center justify-center text-center py-6 md:py-8">
-            <h2 className="text-xl md:text-2xl font-bold text-black mb-3 md:mb-4">
-              문의를 제출 하시겠습니까?
-            </h2>
-            <p className="text-sm md:text-base text-[#2f2f2f] leading-5 md:leading-[19px]">
-              답변은 3~5일 이내 <br />
-              입력한 메일주소로 보내드립니다.
-            </p>
-          </div>
-          <div className="flex gap-3">
-            <button
-              onClick={onCancel}
-              className="flex-1 h-12 md:h-14 bg-[#bbbbbb] text-white rounded-lg font-bold text-sm md:text-base hover:opacity-80 transition-opacity"
-            >
-              취소
-            </button>
-            <button
-              onClick={onConfirm}
-              className="flex-1 h-12 md:h-14 bg-primary-500 text-white rounded-lg font-bold text-sm md:text-base hover:opacity-80 transition-opacity"
-            >
-              확인
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// 제출 완료 모달 컴포넌트
-function SubmitCompleteModal({
-  isOpen,
-  onClose,
-}: {
-  isOpen: boolean;
-  onClose: () => void;
-}) {
-  if (!isOpen) return null;
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
-      <div
-        className="absolute inset-0 bg-black bg-opacity-[0.82]"
-        onClick={onClose}
-      />
-      <div className="relative bg-white rounded-[10px] w-[90vw] max-w-[422px] h-auto min-h-[200px] p-4 md:p-5">
-        <div className="flex flex-col h-full">
-          <div className="flex-1 flex items-center justify-center py-6 md:py-8">
-            <h2 className="text-xl md:text-2xl font-bold text-black text-center">
-              문의가 제출 되었습니다.
-            </h2>
-          </div>
-          <button
-            onClick={onClose}
-            className="w-full h-12 md:h-14 bg-primary-500 text-white rounded-lg font-bold text-sm md:text-base hover:opacity-80 transition-opacity"
-          >
-            확인
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
+import { useActionState, useState, useEffect, useTransition } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
+import { submitContactForm } from "../actions/contact";
+import FormField from "../components/FormField";
+import PrivacyConsent from "../components/PrivacyConsent";
+import { SubmitConfirmModal, SubmitCompleteModal } from "../components/Modal";
+import useFormValidation from "../hooks/useFormValidation";
 
 export default function ContactForm() {
   const [state, formAction, isPending] = useActionState(submitContactForm, {});
+  const [isTransitioning, startTransition] = useTransition();
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showCompleteModal, setShowCompleteModal] = useState(false);
   const [privacyChecked, setPrivacyChecked] = useState(false);
   const [contentLength, setContentLength] = useState(0);
   const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [content, setContent] = useState("");
 
   const searchParams = useSearchParams();
+  const router = useRouter();
+  const { refs, validateForm, validateField, clearValidationMessage } =
+    useFormValidation();
+
+  // 폼 유효성 검사
+  const isFormValid =
+    email.includes("@") &&
+    subject.trim().length > 0 &&
+    content.trim().length > 0 &&
+    privacyChecked;
+
+  // 실제 pending 상태 (두 상태 중 하나라도 true면 pending)
+  const isSubmitting = isPending || isTransitioning;
 
   // URL 쿼리 파라미터에서 이메일 읽어오기
   useEffect(() => {
-    const emailParam = searchParams.get("email");
-    if (emailParam) {
-      // URL 디코딩하여 이메일 설정
-      const decodedEmail = decodeURIComponent(emailParam);
-      setEmail(decodedEmail);
+    try {
+      const emailParam = searchParams.get("email");
+      if (emailParam) {
+        const decodedEmail = decodeURIComponent(emailParam);
+        setEmail(decodedEmail);
+        clearValidationMessage("email");
+      }
+    } catch (error) {
+      console.error("이메일 쿼리 파라미터 처리 중 오류:", error);
     }
-  }, [searchParams]);
+  }, [searchParams, clearValidationMessage]);
 
   // 폼 제출 처리
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // 브라우저 validation 실행
+    if (!validateForm({ email, subject, content, privacyChecked })) {
+      const form = e.currentTarget;
+      const firstInvalidField = form.querySelector(":invalid") as HTMLElement;
+      if (firstInvalidField) {
+        firstInvalidField.focus();
+        form.reportValidity();
+      }
+      return;
+    }
+
     setShowConfirmModal(true);
   };
 
@@ -172,8 +72,53 @@ export default function ContactForm() {
     const form = document.getElementById("contact-form") as HTMLFormElement;
     if (form) {
       const formData = new FormData(form);
-      formAction(formData);
+      startTransition(() => {
+        formAction(formData);
+      });
     }
+  };
+
+  // 입력값 변경 핸들러들
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+    clearValidationMessage("email");
+  };
+
+  const handleEmailBlur = () => {
+    validateField("email", { email, subject, content, privacyChecked });
+  };
+
+  const handleSubjectChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSubject(e.target.value);
+    clearValidationMessage("subject");
+  };
+
+  const handleSubjectBlur = () => {
+    validateField("subject", { email, subject, content, privacyChecked });
+  };
+
+  const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setContent(e.target.value);
+    setContentLength(e.target.value.length);
+    clearValidationMessage("content");
+  };
+
+  const handleContentBlur = () => {
+    validateField("content", { email, subject, content, privacyChecked });
+  };
+
+  const handlePrivacyChange = (checked: boolean) => {
+    setPrivacyChecked(checked);
+    clearValidationMessage("privacy");
+    // 체크박스는 바로 validation 실행
+    setTimeout(() => {
+      validateField("privacy", {
+        email,
+        subject,
+        content,
+        privacyChecked: checked,
+      });
+    }, 0);
   };
 
   // 제출 성공 시 완료 모달 표시
@@ -183,12 +128,12 @@ export default function ContactForm() {
 
   return (
     <>
-      {/* 폼 */}
-      <div className="bg-white rounded-lg p-4 md:p-5">
+      <div className="rounded-lg p-4 md:p-5">
         <form
           id="contact-form"
           onSubmit={handleSubmit}
-          className="space-y-6 md:space-y-8"
+          className="space-y-6 md:space-y-3"
+          noValidate
         >
           {/* 필수입력항목 안내 */}
           <div className="text-right">
@@ -196,176 +141,102 @@ export default function ContactForm() {
           </div>
 
           {/* 이메일 */}
-          <div className="flex flex-col md:flex-row gap-3 md:gap-5">
-            <div className="md:w-[280px] flex items-start pt-1 md:pt-3">
-              <span className="text-lg md:text-xl font-semibold text-black">
-                이메일
-              </span>
-              <span className="text-lg md:text-xl font-semibold text-black ml-1">
-                *
-              </span>
-            </div>
-            <div className="flex-1">
-              <input
-                type="email"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="이메일 주소를 입력해주세요."
-                className="w-full h-11 md:h-12 px-4 md:px-5 border border-text-10 rounded-lg text-sm md:text-base placeholder-neutral-500 focus:outline-none focus:border-primary-500"
-                required
-              />
-              <p className="mt-2 text-sm md:text-base text-neutral-500 font-medium">
-                답변은 이메일로 발송됩니다. 정확한 이메일을 입력해주세요.
-              </p>
-              {state.errors?.email && (
-                <p className="mt-1 text-sm text-red-500">
-                  {state.errors.email[0]}
-                </p>
-              )}
-            </div>
-          </div>
+          <FormField
+            label="이메일"
+            required
+            error={state.errors?.email?.[0]}
+            description="답변은 이메일로 발송됩니다. 정확한 이메일을 입력해주세요."
+          >
+            <input
+              ref={refs.emailRef}
+              type="email"
+              name="email"
+              value={email}
+              onChange={handleEmailChange}
+              onBlur={handleEmailBlur}
+              placeholder="이메일 주소를 입력해주세요."
+              className="w-full h-11 md:h-12 px-4 md:px-5 border border-text-10 rounded-lg text-sm md:text-base placeholder-neutral-550 focus:outline-none focus:border-primary-500"
+              required
+            />
+          </FormField>
 
           {/* 제목 */}
-          <div className="flex flex-col md:flex-row gap-3 md:gap-5">
-            <div className="md:w-[280px] flex items-center">
-              <span className="text-lg md:text-xl font-semibold text-black">
-                제목
-              </span>
-              <span className="text-lg md:text-xl font-semibold text-black ml-1">
-                *
-              </span>
-            </div>
-            <div className="flex-1">
-              <input
-                type="text"
-                name="subject"
-                placeholder="제목을 입력해주세요."
-                className="w-full h-11 md:h-12 px-4 md:px-5 border border-text-10 rounded-lg text-sm md:text-base placeholder-neutral-500 focus:outline-none focus:border-primary-500"
-                required
-              />
-              {state.errors?.subject && (
-                <p className="mt-1 text-sm text-red-500">
-                  {state.errors.subject[0]}
-                </p>
-              )}
-            </div>
-          </div>
+          <FormField label="제목" required error={state.errors?.subject?.[0]}>
+            <input
+              ref={refs.subjectRef}
+              type="text"
+              name="subject"
+              value={subject}
+              onChange={handleSubjectChange}
+              onBlur={handleSubjectBlur}
+              placeholder="제목을 입력해주세요."
+              className="w-full h-11 md:h-12 px-4 md:px-5 border border-text-10 rounded-lg text-sm md:text-base placeholder-neutral-550 focus:outline-none focus:border-primary-500"
+              maxLength={60}
+              required
+            />
+          </FormField>
 
           {/* 문의내용 */}
-          <div className="flex flex-col md:flex-row gap-3 md:gap-5">
-            <div className="md:w-[280px] flex items-start pt-1 md:pt-3">
-              <span className="text-lg md:text-xl font-semibold text-black">
-                문의내용
-              </span>
-              <span className="text-lg md:text-xl font-semibold text-black ml-1">
-                *
-              </span>
+          <FormField
+            label="문의내용"
+            required
+            error={state.errors?.content?.[0]}
+          >
+            <textarea
+              ref={refs.contentRef}
+              name="content"
+              value={content}
+              placeholder="오류 신고 시 오류 발생 당시 사용한 OS/브라우저 정보를 남겨주세요."
+              className="w-full px-4 md:px-5 py-3 border border-text-10 rounded-lg text-sm md:text-base placeholder-neutral-550 focus:outline-none focus:border-primary-500 resize-none h-32 md:h-48"
+              maxLength={3000}
+              onChange={handleContentChange}
+              onBlur={handleContentBlur}
+              required
+            />
+            <div className="mt-2 text-right text-sm md:text-base text-neutral-550">
+              {contentLength}/ 3000
             </div>
-            <div className="flex-1">
-              <textarea
-                name="content"
-                placeholder="오류 신고 시 오류 발생 당시 사용한 OS/브라우저 정보를 남겨주세요."
-                className="w-full px-4 md:px-5 py-3 border border-text-10 rounded-lg text-sm md:text-base placeholder-neutral-500 focus:outline-none focus:border-primary-500 resize-none h-32 md:h-48"
-                maxLength={3000}
-                onChange={(e) => setContentLength(e.target.value.length)}
-                required
-              />
-              <div className="mt-2 text-right text-sm md:text-base text-neutral-500">
-                {contentLength}/ 3000
-              </div>
-              {state.errors?.content && (
-                <p className="mt-1 text-sm text-red-500">
-                  {state.errors.content[0]}
-                </p>
-              )}
-            </div>
-          </div>
+          </FormField>
 
-          {/* 부가정보 (선택) */}
-          <div className="flex flex-col md:flex-row gap-3 md:gap-5">
-            <div className="md:w-[280px] flex items-center">
-              <span className="text-lg md:text-xl font-semibold text-black">
-                부가정보(선택)
-              </span>
-            </div>
-            <div className="flex-1">
-              <input
-                type="text"
-                name="additionalInfo"
-                placeholder="오류 신고 시 오류 발생 당시 사용한 OS/브라우저 정보를 남겨주세요."
-                className="w-full h-11 md:h-12 px-4 md:px-5 border border-text-10 rounded-lg text-sm md:text-base placeholder-neutral-500 focus:outline-none focus:border-primary-500"
-              />
-            </div>
-          </div>
+          {/* 부가정보 */}
+          <FormField label="부가정보(선택)">
+            <input
+              type="text"
+              name="additionalInfo"
+              placeholder="오류 신고 시 오류 발생 당시 사용한 OS/브라우저 정보를 남겨주세요."
+              className="w-full h-11 md:h-12 px-4 md:px-5 border border-text-10 rounded-lg text-sm md:text-base placeholder-neutral-550 focus:outline-none focus:border-primary-500"
+              maxLength={60}
+            />
+          </FormField>
 
           {/* 개인정보 수집 및 이용 동의 */}
-          <div className="flex flex-col md:flex-row gap-3 md:gap-5">
-            <div className="md:w-[280px] flex items-start pt-1 md:pt-3">
-              <span className="text-lg md:text-xl font-semibold text-black">
-                개인정보 수집 및 이용 동의
-              </span>
-              <span className="text-lg md:text-xl font-semibold text-black ml-1">
-                *
-              </span>
-            </div>
-            <div className="flex-1">
-              <div className="flex items-start gap-3 mb-3">
-                <div className="relative mt-0.5">
-                  <input
-                    type="checkbox"
-                    name="privacy"
-                    value="agreed"
-                    checked={privacyChecked}
-                    onChange={(e) => setPrivacyChecked(e.target.checked)}
-                    className="w-5 h-5 appearance-none border-2 border-primary-500 rounded bg-white checked:bg-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1"
-                    required
-                  />
-                  {privacyChecked && (
-                    <svg
-                      className="absolute top-0.5 left-0.5 w-4 h-4 text-white pointer-events-none"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  )}
-                </div>
-                <span className="text-base md:text-lg font-medium text-black leading-6">
-                  문의 서비스 이용을 위한 개인정보 수집 및 이용에 동의합니다.
-                </span>
-              </div>
-              <p className="text-sm md:text-base text-neutral-500 font-medium leading-5 md:leading-6">
-                수집하는 개인정보 : 이메일 주소
-                <br />
-                문의내용 보유기간 : 접수일로부터 30일
-                <br />
-                내용 전체보기
-              </p>
-              {state.errors?.privacy && (
-                <p className="mt-1 text-sm text-red-500">
-                  {state.errors.privacy[0]}
-                </p>
-              )}
-            </div>
-          </div>
+          <FormField
+            label="개인정보 수집 및 이용 동의"
+            required
+            error={state.errors?.privacy?.[0]}
+          >
+            <PrivacyConsent
+              ref={refs.privacyRef}
+              checked={privacyChecked}
+              onChange={handlePrivacyChange}
+            />
+          </FormField>
 
           {/* 제출 버튼 */}
           <div className="flex justify-center pt-6 md:pt-8">
             <button
               type="submit"
-              disabled={isPending}
-              className="w-full max-w-[335px] h-12 md:h-14 bg-primary-500 text-white rounded-lg font-semibold text-base md:text-lg hover:opacity-80 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={isSubmitting || !isFormValid}
+              className={`w-full max-w-[335px] h-12 md:h-14 rounded-lg font-semibold text-base md:text-lg transition-all duration-200 ${
+                isFormValid && !isSubmitting
+                  ? "bg-primary-500 text-white hover:opacity-80"
+                  : "bg-gray-300 text-neutral-500 cursor-not-allowed"
+              }`}
             >
-              {isPending ? "제출 중..." : "제출하기"}
+              {isSubmitting ? "제출 중..." : "제출하기"}
             </button>
           </div>
 
-          {/* 에러 메시지 */}
           {state.error && (
             <div className="text-center">
               <p className="text-red-500">{state.error}</p>
@@ -385,16 +256,8 @@ export default function ContactForm() {
         isOpen={showCompleteModal}
         onClose={() => {
           setShowCompleteModal(false);
-          // 폼 초기화
-          const form = document.getElementById(
-            "contact-form"
-          ) as HTMLFormElement;
-          if (form) {
-            form.reset();
-            setEmail("");
-            setPrivacyChecked(false);
-            setContentLength(0);
-          }
+          router.refresh();
+          window.location.reload();
         }}
       />
     </>

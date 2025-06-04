@@ -7,17 +7,17 @@ export default function FooterLinks() {
     <div
       className={clsx(
         "w-full border-t border-text-10",
-        "px-5 py-4",
-        "md:px-8 md:py-5",
-        "lg:px-16 lg:py-3"
+        "px-5",
+        "md:px-8",
+        "lg:px-16"
       )}
     >
       <div
         className={clsx(
           "flex flex-wrap justify-around",
-          "text-xs",
-          "md:text-sm",
-          ""
+          "text-xs py-4",
+          "md:py-5, md:text-sm",
+          "lg:py-3"
         )}
       >
         {footerLinks.map((link, index) =>
@@ -25,7 +25,7 @@ export default function FooterLinks() {
             <Link
               key={index}
               href={link.href}
-              className={clsx("text-black text-center my-auto")}
+              className={clsx("text-black text-center my-auto flex-1")}
               target={link.newTab ? "_blank" : undefined}
             >
               <span className="hidden lg:block">{link.titleUpper}</span>

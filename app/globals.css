@@ -26,6 +26,9 @@
   --color-neutral-200: #f3f4f5;
   --color-neutral-300: #d1d5db;
   --color-neutral-500: #bbbbbb;
+  --color-neutral-525: #888888;
+  --color-neutral-550: #828282;
+  --color-neutral-575: #808080;
   --color-neutral-600: #555555;
   --color-neutral-800: #2f2f2f;
 
@@ -44,10 +47,21 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-pretendard), -apple-system, BlinkMacSystemFont,
-    system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo",
-    "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", sans-serif;
+  font-family:
+    var(--font-pretendard),
+    -apple-system,
+    BlinkMacSystemFont,
+    system-ui,
+    Roboto,
+    "Helvetica Neue",
+    "Segoe UI",
+    "Apple SD Gothic Neo",
+    "Noto Sans KR",
+    "Malgun Gothic",
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    sans-serif;
 }
 
 /* 모바일 우선 반응형 기본 설정 */
