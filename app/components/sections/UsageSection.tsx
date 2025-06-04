@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import clsx from "clsx";
-import { usageData } from "./usageData";
-import UsageTagButton from "./UsageTagButton";
-import UsageContent from "./UsageContent";
-import { UsageNavigationButton } from "./UsageNavigation";
+import { usageData } from "./usage/usageData";
+import UsageTagButton from "./usage/UsageTagButton";
+import UsageContent from "./usage/UsageContent";
+import { UsageNavigationButton } from "./usage/UsageNavigation";
 
 export default function UsageSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
