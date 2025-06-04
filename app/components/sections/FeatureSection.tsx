@@ -1,7 +1,7 @@
 import clsx from "clsx";
-import FolderTag from "../FolderTag";
+import FeatureTag from "./feature";
 
-export default function FolderSection() {
+export default function FeatureSection() {
   return (
     <div
       className={clsx(
@@ -34,7 +34,7 @@ export default function FolderSection() {
             </span>
           </h2>
 
-          {/* 폴더 태그들 */}
+          {/* 피처 태그들 */}
           <div
             className={clsx(
               "flex flex-wrap max-w-sm",
@@ -43,12 +43,12 @@ export default function FolderSection() {
               "lg:gap-6 lg:max-w-[574px] lg:mx-0"
             )}
           >
-            <FolderTag>🍜 오사카 맛집</FolderTag>
-            <FolderTag>👟 홈트 영상</FolderTag>
-            <FolderTag>🎨 디자인 레퍼런스</FolderTag>
-            <FolderTag>💰 재테크 공부</FolderTag>
-            <FolderTag>📷 Vlog 카메라</FolderTag>
-            <FolderTag>✏️ 토익 학습자료</FolderTag>
+            <FeatureTag>🍜 오사카 맛집</FeatureTag>
+            <FeatureTag>👟 홈트 영상</FeatureTag>
+            <FeatureTag>🎨 디자인 레퍼런스</FeatureTag>
+            <FeatureTag>💰 재테크 공부</FeatureTag>
+            <FeatureTag>📷 Vlog 카메라</FeatureTag>
+            <FeatureTag>✏️ 토익 학습자료</FeatureTag>
           </div>
         </div>
       </div>

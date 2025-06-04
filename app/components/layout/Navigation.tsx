@@ -8,7 +8,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 
 // 모달을 동적 임포트로 최적화
-const AppDownloadModal = dynamic(() => import("../AppDownloadModal"), {
+const AppDownloadModal = dynamic(() => import("../Modal/AppDownloadModal"), {
   ssr: false,
   loading: () => null,
 });

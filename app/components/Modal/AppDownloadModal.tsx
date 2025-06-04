@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import clsx from "clsx";
-import { MobileDownloadButtons, QRCodeSection } from "./sections/download";
+import { MobileDownloadButtons, QRCodeSection } from "../sections/download";
 
 interface AppDownloadModalProps {
   isOpen: boolean;

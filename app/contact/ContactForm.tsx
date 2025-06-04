@@ -4,7 +4,7 @@ import { useActionState, useState, useEffect, useTransition } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { submitContactForm } from "../actions/contact";
 import FormField from "../components/FormField";
-import PrivacyConsent from "../components/PrivacyConsent";
+import PrivacyConsent from "./PrivacyConsent";
 import { SubmitConfirmModal, SubmitCompleteModal } from "../components/Modal";
 import useFormValidation from "../hooks/useFormValidation";
 

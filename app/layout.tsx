@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import WebVitals from "./components/WebVitals";
-import Footer from "./components/sections/Footer";
+import Footer from "./components/layout/Footer";
 import StructuredData from "./components/StructuredData";
-import Navigation from "./components/sections/Navigation";
+import Navigation from "./components/layout/Navigation";
 
 const pretendard = localFont({
   src: [

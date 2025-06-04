@@ -1,6 +1,6 @@
 import HeroSection from "./components/sections/HeroSection";
 import UsageSection from "./components/sections/UsageSection";
-import FolderSection from "./components/sections/FolderSection";
+import FeatureSection from "./components/sections/FeatureSection";
 import ReviewSection from "./components/sections/ReviewSection";
 import DownloadSection from "./components/sections/DownloadSection";
 
@@ -9,7 +9,7 @@ export default function Home() {
     <div className="w-full">
       <HeroSection />
       <UsageSection />
-      <FolderSection />
+      <FeatureSection />
       <ReviewSection />
       <DownloadSection />
     </div>
