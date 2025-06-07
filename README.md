@@ -56,6 +56,11 @@ npm run dev
 npm run build
 ```
 
+## 자동 배포
+
+GitHub Actions를 이용하여 Docker 이미지를 빌드하고 원격 서버에 배포합니다.
+`.github/workflows/deploy.yml` 파일을 참고하세요.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -72,7 +77,7 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3001](http://localhost:3001) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
