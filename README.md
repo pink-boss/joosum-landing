@@ -56,6 +56,13 @@ npm run dev
 npm run build
 ```
 
+## 자동 배포
+
+GitHub Actions를 이용하여 Docker 이미지를 빌드하고 원격 서버에 배포합니다.
+배포 과정에서는 `ENV` 라는 GitHub Secret 값을 이용해 `.env` 파일을 생성하고,
+해당 파일을 컨테이너 실행 시 사용합니다.
+`.github/workflows/deploy.yml` 파일을 참고하세요.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
