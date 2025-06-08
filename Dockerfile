@@ -20,6 +20,6 @@ COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./package.json
 # 애플리케이션이 사용하는 포트를 설정합니다
-ENV PORT=3001
-EXPOSE 3001
+ENV PORT=3000
+EXPOSE 3000
 CMD ["npm", "start"]

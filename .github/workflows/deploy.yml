@@ -58,8 +58,8 @@ jobs:
             docker pull joosum.kr.ncr.ntruss.com/joosum-landing:${{ steps.date.outputs.date }}
             docker stop $(docker ps -q -f 'name=landing') || true
             docker rm landing || true
-            # 컨테이너 포트를 3001로 변경하여 실행합니다
-            docker run --rm -d -p 3001:3001 \
+            # 호스트 3001번을 컨테이너의 3000번 포트로 매핑합니다
+            docker run --rm -d -p 3001:3000 \
               --env-file .env \
-              -e PORT=3001 \
+              -e PORT=3000 \
               --name landing joosum.kr.ncr.ntruss.com/joosum-landing:${{ steps.date.outputs.date }}
