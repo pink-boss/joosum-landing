@@ -5,6 +5,7 @@ import WebVitals from "./components/WebVitals";
 import Footer from "./components/layout/Footer";
 import StructuredData from "./components/StructuredData";
 import Navigation from "./components/layout/Navigation";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 const pretendard = localFont({
   src: [
@@ -120,10 +121,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
-      <body className={`${pretendard.variable} antialiased`}>
-        <WebVitals />
+    <html lang="ko" className={pretendard.variable}>
+      <head>
         <StructuredData />
+      </head>
+      <body className={`${pretendard.variable} antialiased`}>
+        <GoogleTagManager gtmId="GTM-K4FXLG7Z" />
+        <WebVitals />
         <main className="w-full min-h-screen bg-white">
           <Navigation />
           {children}
