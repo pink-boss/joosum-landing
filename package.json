@@ -10,12 +10,13 @@
   },
   "dependencies": {
     "@next/third-parties": "^15.3.3",
+    "@types/nodemailer": "^6.4.17",
     "clsx": "^2.1.1",
     "critters": "^0.0.23",
     "next": "15.3.2",
+    "nodemailer": "^7.0.5",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "resend": "^4.5.1"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

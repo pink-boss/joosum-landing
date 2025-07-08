@@ -1,5 +1,7 @@
 "use server";
 
+import nodemailer from "nodemailer";
+
 // ContactEmailTemplate 로직을 순수 함수로 변환
 function generateContactEmailHtml({
   email,
@@ -30,7 +32,7 @@ function generateContactEmailHtml({
 
       <div style="margin: 20px 0;">
         <h3 style="color: #555; margin-bottom: 10px;">문의 내용</h3>
-        <div style="background-color: #f9f9f9; padding: 15px; border-radius: 5px; white-space: pre-wrap;">
+        <div style="background-color: #f9f9f9; padding: 10px; border-radius: 5px;">
           ${content}
         </div>
       </div>
@@ -47,7 +49,7 @@ function generateContactEmailHtml({
       }
 
       <div style="margin-top: 30px; padding: 10px; background-color: #f0f0f0; border-radius: 5px; font-size: 12px; color: #666;">
-        <p>이 메일은 Joosum 랜딩 페이지에서 자동으로 발송되었습니다.</p>
+        <p>이 메일은 Joosum 문의하기 페이지에서 발송되었습니다.</p>
         <p>발송 시간: ${new Date().toLocaleString("ko-KR")}</p>
       </div>
     </div>
@@ -100,10 +102,18 @@ export async function submitContactForm(
   }
 
   try {
-    // RESEND_API_KEY가 설정되어 있으면 실제 메일 전송
-    if (process.env.RESEND_API_KEY) {
-      const { Resend } = await import("resend");
-      const resend = new Resend(process.env.RESEND_API_KEY);
+    if (process.env.GMAIL_USER && process.env.GMAIL_APP_PASS) {
+      // Gmail SMTP 설정
+      const transporter = nodemailer.createTransport({
+        service: "gmail",
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false, // TLS 사용
+        auth: {
+          user: process.env.GMAIL_USER,
+          pass: process.env.GMAIL_APP_PASS, // Gmail 앱 비밀번호
+        },
+      });
 
       // 이메일 HTML 생성
       const emailHtml = generateContactEmailHtml({
@@ -113,22 +123,20 @@ export async function submitContactForm(
         additionalInfo,
       });
 
-      const { data, error } = await resend.emails.send({
-        from: "noreply@joosum.com",
-        to: ["pinkjoosum@gmail.com"],
+      // 메일 옵션 설정
+      const mailOptions = {
+        from: `"Joosum 문의" <${process.env.GMAIL_USER}>`,
+        to: "pinkjoosum@gmail.com",
         subject: `[Joosum 문의] ${subject}`,
         html: emailHtml,
         replyTo: email,
-      });
+      };
 
-      if (error) {
-        console.error("메일 전송 실패:", error);
-        return { error: "메일 전송 중 오류가 발생했습니다." };
-      }
-
-      console.log("메일 전송 성공:", data);
+      // 메일 전송
+      const info = await transporter.sendMail(mailOptions);
+      console.log("메일 전송 성공:", info.messageId);
     } else {
-      // API 키가 없을 때는 콘솔에 로그만 출력 (개발용)
+      // Gmail 설정이 없을 때는 콘솔에 로그만 출력 (개발용)
       console.log("=== 문의 접수 (개발 모드) ===");
       console.log("이메일:", email);
       console.log("제목:", subject);
@@ -136,7 +144,10 @@ export async function submitContactForm(
       if (additionalInfo) console.log("부가정보:", additionalInfo);
       console.log("접수 시간:", new Date().toLocaleString("ko-KR"));
       console.log(
-        "RESEND_API_KEY가 설정되지 않아 실제 메일은 전송되지 않았습니다."
+        "GMAIL_USER 또는 GMAIL_APP_PASS가 설정되지 않아 실제 메일은 전송되지 않았습니다."
+      );
+      console.log(
+        "Gmail 앱 비밀번호 설정이 필요합니다: https://myaccount.google.com/apppasswords"
       );
       console.log("==========================");
     }

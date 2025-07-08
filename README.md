@@ -20,29 +20,28 @@
 
 ## 이메일 설정
 
-이메일 전송 기능을 사용하려면 [Resend](https://resend.com)에서 API 키를 발급받고 환경변수를 설정해주세요.
+이메일 전송 기능을 사용하려면 Gmail 계정을 설정하고 환경변수를 설정해주세요.
 
-### 1. Resend 설정
+### 1. Gmail 설정
 
-1. [Resend](https://resend.com)에 가입
-2. API Keys 메뉴에서 새 API 키 생성
-3. 도메인 인증 (선택사항이지만 권장)
+1. Gmail 계정에서 2단계 인증을 활성화
+2. [Google 계정 관리](https://myaccount.google.com/apppasswords)에서 앱 비밀번호 생성
+3. "앱 비밀번호" 섹션에서 새 앱 비밀번호를 생성 (16자리 비밀번호가 생성됩니다)
 
 ### 2. 환경변수 설정
 
 `.env.local` 파일을 생성하고 다음 내용을 추가:
 
 ```bash
-RESEND_API_KEY=your_resend_api_key_here
+GMAIL_USER=your-email@gmail.com
+GMAIL_APP_PASS=your-app-password
 ```
 
-### 3. 발신자 이메일 설정
+### 3. 주의사항
 
-`app/actions/contact.ts` 파일에서 발신자 이메일을 실제 도메인으로 변경:
-
-```typescript
-from: "contact@yourdomain.com", // 실제 도메인으로 변경
-```
+- `GMAIL_APP_PASS`는 Gmail 계정 비밀번호가 아닌 앱 비밀번호를 사용해야 합니다
+- 2단계 인증이 활성화되어 있어야 앱 비밀번호를 생성할 수 있습니다
+- 앱 비밀번호는 공백 없이 16자리로 입력해주세요
 
 ## 개발
 
