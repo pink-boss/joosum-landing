@@ -1,6 +1,12 @@
 "use client";
 
-import { useActionState, useState, useEffect, useTransition } from "react";
+import {
+  useActionState,
+  useState,
+  useEffect,
+  useTransition,
+  useRef,
+} from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { submitContactForm } from "../actions/contact";
 import FormField from "../components/FormField";
@@ -24,6 +30,9 @@ export default function ContactForm() {
   const { refs, validateForm, validateField, clearValidationMessage } =
     useFormValidation();
 
+  // 초기화 여부를 추적하는 ref
+  const isInitializedRef = useRef(false);
+
   // 폼 유효성 검사
   const isFormValid =
     email.includes("@") &&
@@ -36,17 +45,21 @@ export default function ContactForm() {
 
   // URL 쿼리 파라미터에서 이메일 읽어오기
   useEffect(() => {
+    if (isInitializedRef.current) return;
+
     try {
       const emailParam = searchParams.get("email");
-      if (emailParam) {
+      if (emailParam && !email) {
         const decodedEmail = decodeURIComponent(emailParam);
         setEmail(decodedEmail);
         clearValidationMessage("email");
+
+        isInitializedRef.current = true;
       }
     } catch (error) {
       console.error("이메일 쿼리 파라미터 처리 중 오류:", error);
     }
-  }, [searchParams, clearValidationMessage]);
+  }, [searchParams, clearValidationMessage, email]);
 
   // 폼 제출 처리
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
