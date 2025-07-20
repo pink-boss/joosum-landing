@@ -10,7 +10,10 @@ export interface UsageItem {
     tablet: string;
     desktop: string;
   };
-  image: string;
+  image: {
+    mobile: string;
+    tablet: string;
+  };
 }
 
 export const usageData: UsageItem[] = [
@@ -28,7 +31,10 @@ export const usageData: UsageItem[] = [
       desktop:
         "공유하기를 통해 바로 내보내고\n제목이나 폴더 변경은 옵션이에요.",
     },
-    image: "링크 저장 공유 패널 이미지",
+    image: {
+      mobile: "/images/usage/share-iphone.png",
+      tablet: "/images/usage/share-ipad.png",
+    },
   },
   {
     tag: "어디서든 확인",
@@ -43,7 +49,10 @@ export const usageData: UsageItem[] = [
       tablet: "모든 기기에서 동기화되어\n어디서든 같은 콘텐츠를 볼 수 있어요.",
       desktop: "모든 기기에서 동기화되어\n어디서든 같은 콘텐츠를 볼 수 있어요.",
     },
-    image: "멀티 디바이스 동기화 이미지",
+    image: {
+      mobile: "/images/hero/hero-iphone.png",
+      tablet: "/images/hero/hero-ipad.png",
+    },
   },
   {
     tag: "나만의 폴더",
@@ -57,7 +66,10 @@ export const usageData: UsageItem[] = [
       tablet: "폴더별로 콘텐츠를 분류하여\n필요할 때 빠르게 찾을 수 있어요.",
       desktop: "폴더별로 콘텐츠를 분류하여\n필요할 때 빠르게 찾을 수 있어요.",
     },
-    image: "폴더 관리 시스템 이미지",
+    image: {
+      mobile: "/images/usage/folder-iphone.png",
+      tablet: "/images/usage/folder-ipad.png",
+    },
   },
   {
     tag: "태그로 구분",
@@ -73,7 +85,10 @@ export const usageData: UsageItem[] = [
       desktop:
         "하나의 콘텐츠에 여러 태그를 붙여\n검색과 분류가 더욱 편리해져요.",
     },
-    image: "태그 시스템 이미지",
+    image: {
+      mobile: "/images/usage/tag-iphone.png",
+      tablet: "/images/usage/tag-ipad.png",
+    },
   },
   {
     tag: "잊지않게 알림",
@@ -87,6 +102,9 @@ export const usageData: UsageItem[] = [
       tablet: "원하는 시간에 알림을 받아\n중요한 콘텐츠를 놓치지 않아요.",
       desktop: "원하는 시간에 알림을 받아\n중요한 콘텐츠를 놓치지 않아요.",
     },
-    image: "알림 설정 이미지",
+    image: {
+      mobile: "/images/usage/notification-iphone.png",
+      tablet: "/images/usage/notification-ipad.png",
+    },
   },
 ];

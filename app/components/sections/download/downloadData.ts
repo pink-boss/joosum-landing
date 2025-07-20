@@ -16,8 +16,3 @@ export const downloadStores: DownloadStore[] = [
     url: "https://play.google.com/store/apps/details?id=com.joosum.app",
   },
 ];
-
-export const mockupData = {
-  title: "목업이미지",
-  description: "",
-};

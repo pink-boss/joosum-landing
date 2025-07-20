@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { UsageItem } from "./usageData";
+import UsageImage from "./UsageImage";
 
 interface UsageContentProps {
   data: UsageItem;
@@ -10,7 +11,7 @@ export default function UsageContent({ data }: UsageContentProps) {
     <div
       className={clsx(
         "bg-neutral-200 rounded-3xl",
-        "px-6 pt-6 pb-0 flex flex-col",
+        "px-6 py-6 flex flex-col",
         "md:p-8",
         "lg:px-10 lg:py-12 lg:flex-row lg:items-center lg:justify-between"
       )}
@@ -96,25 +97,7 @@ export default function UsageContent({ data }: UsageContentProps) {
           </span>
         </p>
       </div>
-      <div
-        className={clsx(
-          "bg-white flex items-center justify-center mx-auto",
-          "h-64 rounded-t-2xl w-48",
-          "md:h-80 md:rounded-2xl w-full",
-          "lg:h-[280px] lg:w-[466px] lg:mx-0"
-        )}
-      >
-        <span
-          className={clsx(
-            "text-neutral-500 text-center",
-            "text-sm",
-            "md:text-base",
-            "lg:text-[14px] lg:leading-5"
-          )}
-        >
-          {data.image}
-        </span>
-      </div>
+      <UsageImage data={data} />
     </div>
   );
 }

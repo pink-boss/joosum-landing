@@ -1,8 +1,6 @@
-"use client";
-
 import clsx from "clsx";
 import HeroTextSection from "./hero/HeroTextSection";
-import HeroMockup from "./hero/HeroMockup";
+import HeroMockup from "./hero/HeroImage";
 
 export default function HeroSection() {
   return (
