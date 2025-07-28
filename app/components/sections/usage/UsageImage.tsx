@@ -11,7 +11,7 @@ export default function UsageImage({ data }: UsageImageProps) {
     <div
       className={clsx(
         "flex items-center justify-center mx-auto",
-        "rounded-t-2xl w-48",
+        "rounded-t-2xl w-48 h-[505.86px]",
         "md:rounded-2xl w-full md:h-72",
         "lg:h-[280px] lg:w-[466px] lg:mx-0"
       )}
@@ -19,8 +19,8 @@ export default function UsageImage({ data }: UsageImageProps) {
       <Image
         src={data.image.mobile}
         alt={data.tag}
-        width={251.1}
-        height={444.3}
+        width={286}
+        height={354}
         className="block md:hidden"
       />
       <Image

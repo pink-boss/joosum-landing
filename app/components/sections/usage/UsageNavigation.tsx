@@ -16,8 +16,8 @@ export function UsageNavigationButton({
     <button
       onClick={onClick}
       className={clsx(
-        "rounded-full flex items-center justify-center transition-colors cursor-pointer py-4",
-        "w-10 h-10",
+        "rounded-full flex items-center justify-center transition-colors cursor-pointer py-8",
+        "w-6 h-6",
         "md:w-12 md:h-12",
         "lg:w-12 lg:h-12"
       )}

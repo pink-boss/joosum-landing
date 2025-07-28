@@ -10,9 +10,9 @@ export default function FeatureTag({ children }: FeatureTagProps) {
     <div
       className={clsx(
         "flex items-center justify-center bg-white rounded-full border border-neutral-200 text-neutral-800 font-medium whitespace-nowrap",
-        "px-4 py-2 text-sm",
-        "md:px-5 md:py-3 md:text-base",
-        "lg:px-6 lg:py-3 lg:text-lg"
+        "px-5 py-3 text-base",
+        "md:px-4 md:py-4 md:text-2xl",
+        "lg:px-7 lg:py-5 lg:text-3xl"
       )}
     >
       {children}

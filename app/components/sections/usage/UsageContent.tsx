@@ -10,10 +10,10 @@ export default function UsageContent({ data }: UsageContentProps) {
   return (
     <div
       className={clsx(
-        "bg-neutral-200 rounded-3xl",
-        "px-6 py-6 flex flex-col",
-        "md:p-8",
-        "lg:px-10 lg:py-12 lg:flex-row lg:items-center lg:justify-between"
+        "rounded-3xl",
+        "sm:px-6 py-6 flex flex-col max-w-[334px] mx-auto",
+        "md:p-8 md:max-w-none",
+        "lg:px-10 lg:py-12 lg:flex-row lg:items-center lg:justify-between lg:gap-20"
       )}
     >
       <div

@@ -72,9 +72,9 @@ export default function UsageSection() {
         <div
           className={clsx(
             "flex flex-wrap justify-center",
-            "gap-3 mb-8",
-            "md:gap-4 md:mb-12",
-            "lg:gap-6 lg:justify-start"
+            "gap-3 mb-8 max-w-[360px] mx-auto",
+            "md:gap-4 md:mb-6 md:max-w-[500px] md:mx-auto",
+            "lg:gap-6 lg:justify-start lg:max-w-full"
           )}
         >
           {usageData.map((item, index) => (
@@ -90,13 +90,13 @@ export default function UsageSection() {
 
       {/* 사용법 콘텐츠 */}
       <div className={clsx("max-w-7xl mx-auto", "mt-8", "md:mt-16", "lg:mt-8")}>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-center lg:justify-between">
           <UsageNavigationButton
             direction="previous"
             onClick={handlePrevious}
           />
 
-          <div className={clsx("flex-1", "mx-4", "md:mx-6", "lg:mx-8")}>
+          <div className={clsx("flex-none", "mx-4", "md:mx-6", "lg:mx-8")}>
             <UsageContent data={currentData} />
           </div>
 

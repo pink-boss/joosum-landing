@@ -50,8 +50,8 @@ export const usageData: UsageItem[] = [
       desktop: "모든 기기에서 동기화되어\n어디서든 같은 콘텐츠를 볼 수 있어요.",
     },
     image: {
-      mobile: "/images/hero/hero-iphone.png",
-      tablet: "/images/hero/hero-ipad.png",
+      mobile: "/images/usage/linked-iphone.png",
+      tablet: "/images/usage/linked-ipad.png",
     },
   },
   {
