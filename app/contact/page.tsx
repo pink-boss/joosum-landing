@@ -14,8 +14,6 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-  console.log("process.env.GMAIL_USER", process.env.GMAIL_USER);
-  console.log("process.env.GMAIL_APP_PASS", process.env.GMAIL_APP_PASS);
   return (
     <div className="w-full bg-neutral-50 py-8 md:py-12 lg:py-[60px]">
       <div className="max-w-[1240px] mx-auto px-5 md:px-10 lg:px-20">

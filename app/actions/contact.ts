@@ -102,6 +102,7 @@ export async function submitContactForm(
   }
 
   try {
+    throw new Error("test");
     if (process.env.GMAIL_USER && process.env.GMAIL_APP_PASS) {
       // Gmail SMTP 설정
       const transporter = nodemailer.createTransport({
@@ -158,6 +159,12 @@ export async function submitContactForm(
     return { success: true };
   } catch (error) {
     console.error("문의 제출 중 예외 발생:", error);
-    return { error: "문의 제출 중 오류가 발생했습니다." };
+    return {
+      error:
+        "문의 제출 중 오류가 발생했습니다. " +
+        process.env.GMAIL_USER +
+        " " +
+        process.env.GMAIL_APP_PASS,
+    };
   }
 }
