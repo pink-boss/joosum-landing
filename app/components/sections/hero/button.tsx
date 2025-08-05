@@ -2,11 +2,19 @@
 
 import { openJoosumApp } from "@/app/utils/deviceUtils";
 import clsx from "clsx";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 export default function Button() {
+  const handleClickStart = () => {
+    sendGTMEvent({ event: "click", value: "click.start_main_landing" });
+  };
+
   return (
     <button
-      onClick={openJoosumApp}
+      onClick={() => {
+        openJoosumApp();
+        handleClickStart();
+      }}
       className={clsx(
         "bg-white text-primary-500 rounded-xl font-bold hover:bg-neutral-50 transition-colors cursor-pointer",
         "px-4 py-2 text-base",

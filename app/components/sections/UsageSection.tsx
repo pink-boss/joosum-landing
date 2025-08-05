@@ -6,20 +6,30 @@ import { usageData } from "./usage/usageData";
 import UsageTagButton from "./usage/UsageTagButton";
 import UsageContent from "./usage/UsageContent";
 import { UsageNavigationButton } from "./usage/UsageNavigation";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 export default function UsageSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePrevious = () => {
     setCurrentIndex((prev) => (prev === 0 ? usageData.length - 1 : prev - 1));
+    sendGTMEvent({
+      event: "click",
+      value: "click.usageDirection_main_landing",
+    });
   };
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev === usageData.length - 1 ? 0 : prev + 1));
+    sendGTMEvent({
+      event: "click",
+      value: "click.usageDirection_main_landing",
+    });
   };
 
   const handleTagClick = (index: number) => {
     setCurrentIndex(index);
+    sendGTMEvent({ event: "click", value: "click.usageTab_main_landing" });
   };
 
   const currentData = usageData[currentIndex];

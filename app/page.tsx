@@ -3,6 +3,7 @@ import UsageSection from "./components/sections/UsageSection";
 import FeatureSection from "./components/sections/FeatureSection";
 import ReviewSection from "./components/sections/ReviewSection";
 import DownloadSection from "./components/sections/DownloadSection";
+import SendLandingEvent from "./components/SendLandingEvent";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <FeatureSection />
       <ReviewSection />
       <DownloadSection />
+      <SendLandingEvent />
     </div>
   );
 }

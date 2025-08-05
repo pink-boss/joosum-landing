@@ -6,6 +6,7 @@ import clsx from "clsx";
 import { openJoosumApp } from "../../utils/deviceUtils";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 // 모달을 동적 임포트로 최적화
 const AppDownloadModal = dynamic(() => import("../Modal/AppDownloadModal"), {
@@ -21,9 +22,25 @@ export default function Navigation() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const handleClickLogo = () => {
+    sendGTMEvent({ event: "click", value: "click.logo_gnb_landing" });
+  };
+
+  const handleClickStart = () => {
+    openJoosumApp();
+    sendGTMEvent({ event: "click", value: "click.start_gnb_landing" });
+  };
+
+  const handleAppDownloadGNB = () => {
+    sendGTMEvent({ event: "click", value: "click.download_gnb_landing" });
+  };
+  const handleClickContact = () => {
+    sendGTMEvent({ event: "click", value: "click.contact_gnb_landing" });
+  };
+
   const openModal = () => {
     setIsModalOpen(true);
-    setIsMenuOpen(false); // 모바일 메뉴가 열려있다면 닫기
+    handleAppDownloadGNB();
   };
 
   const closeModal = () => {
@@ -43,6 +60,7 @@ export default function Navigation() {
         <div className="flex items-center justify-between max-w-7xl mx-auto">
           <Link
             href="/"
+            onClick={handleClickLogo}
             className="flex items-center gap-2 hover:opacity-80 transition-opacity"
           >
             <>
@@ -124,6 +142,7 @@ export default function Navigation() {
                 "text-base",
                 "lg:text-lg"
               )}
+              onClick={handleClickContact}
             >
               <div className="w-[72px]">문의하기</div>
             </Link>
@@ -138,7 +157,7 @@ export default function Navigation() {
               앱 다운로드
             </button>
             <button
-              onClick={openJoosumApp}
+              onClick={handleClickStart}
               className={clsx(
                 "bg-primary-500 text-white rounded-lg font-semibold hover:bg-primary-700 transition-colors cursor-pointer",
                 "px-5 py-2 text-base",
@@ -169,7 +188,10 @@ export default function Navigation() {
             >
               <Link
                 href="/contact"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  handleClickContact();
+                }}
                 className="text-text-80 text-[28px] font-extrabold cursor-pointer hover:text-primary-400 transition-colors"
               >
                 문의하기
@@ -177,14 +199,17 @@ export default function Navigation() {
               <button
                 onClick={() => {
                   setIsMenuOpen(false);
-                  openJoosumApp();
+                  handleClickStart();
                 }}
                 className="text-text-80 text-[28px] font-extrabold cursor-pointer hover:text-primary-400 transition-colors"
               >
                 주섬 시작하기
               </button>
               <button
-                onClick={openModal}
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  openModal();
+                }}
                 className="text-text-80 text-[28px] font-extrabold cursor-pointer hover:text-primary-400 transition-colors"
               >
                 앱 다운로드
