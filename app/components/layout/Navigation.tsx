@@ -23,19 +23,19 @@ export default function Navigation() {
   };
 
   const handleClickLogo = () => {
-    sendGTMEvent({ event: "click", value: "click.logo_gnb_landing" });
+    sendGTMEvent({ event: "click.logo_gnb_landing" });
   };
 
   const handleClickStart = () => {
     openJoosumApp();
-    sendGTMEvent({ event: "click", value: "click.start_gnb_landing" });
+    sendGTMEvent({ event: "click.start_gnb_landing" });
   };
 
   const handleAppDownloadGNB = () => {
-    sendGTMEvent({ event: "click", value: "click.download_gnb_landing" });
+    sendGTMEvent({ event: "click.download_gnb_landing" });
   };
   const handleClickContact = () => {
-    sendGTMEvent({ event: "click", value: "click.contact_gnb_landing" });
+    sendGTMEvent({ event: "click.contact_gnb_landing" });
   };
 
   const openModal = () => {

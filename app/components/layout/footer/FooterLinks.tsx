@@ -9,22 +9,16 @@ export default function FooterLinks() {
   const handleLinkClick = (titleUpper: string) => {
     switch (titleUpper) {
       case "개인정보":
-        sendGTMEvent({
-          event: "click",
-          value: "click.detailPrivacyPolicy_footer_landing",
-        });
+        sendGTMEvent({ event: "click.detailPrivacyPolicy_footer_landing" });
         break;
       case "서비스":
-        sendGTMEvent({
-          event: "click",
-          value: "click.agreeTermsOfService_footer_landing",
-        });
+        sendGTMEvent({ event: "click.agreeTermsOfService_footer_landing" });
         break;
       case "이용문의":
-        sendGTMEvent({ event: "click", value: "click.contact_footer_landing" });
+        sendGTMEvent({ event: "click.contact_footer_landing" });
         break;
       case "공지사항":
-        sendGTMEvent({ event: "click", value: "click.notice_footer_landing" });
+        sendGTMEvent({ event: "click.notice_footer_landing" });
         break;
     }
   };

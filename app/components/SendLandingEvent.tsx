@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 export default function SendLandingEvent() {
   useEffect(() => {
-    sendGTMEvent({ event: "view", value: "view.landing" });
+    sendGTMEvent({ event: "view.landing" });
   }, []);
 
   return <></>;

@@ -6,7 +6,7 @@ import { sendGTMEvent } from "@next/third-parties/google";
 
 export default function Button() {
   const handleClickStart = () => {
-    sendGTMEvent({ event: "click", value: "click.start_main_landing" });
+    sendGTMEvent({ event: "click.start_main_landing" });
   };
 
   return (
