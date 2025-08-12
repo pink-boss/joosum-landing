@@ -13,6 +13,7 @@ import FormField from "../components/FormField";
 import PrivacyConsent from "./PrivacyConsent";
 import { SubmitConfirmModal, SubmitCompleteModal } from "../components/Modal";
 import useFormValidation from "../hooks/useFormValidation";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 export default function ContactForm() {
   const [state, formAction, isPending] = useActionState(submitContactForm, {});
@@ -65,6 +66,8 @@ export default function ContactForm() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    sendGTMEvent({ event: "click.submit_contact" });
+
     // 브라우저 validation 실행
     if (!validateForm({ email, subject, content, privacyChecked })) {
       const form = e.currentTarget;
@@ -81,6 +84,7 @@ export default function ContactForm() {
 
   // 제출 확인
   const handleConfirmSubmit = () => {
+    sendGTMEvent({ event: "click.confirm_submit_contact" });
     setShowConfirmModal(false);
     const form = document.getElementById("contact-form") as HTMLFormElement;
     if (form) {
@@ -89,6 +93,11 @@ export default function ContactForm() {
         formAction(formData);
       });
     }
+  };
+
+  const handleCancelSubmit = () => {
+    sendGTMEvent({ event: "click.cancel_submit_contact" });
+    setShowConfirmModal(false);
   };
 
   // 입력값 변경 핸들러들
@@ -261,7 +270,7 @@ export default function ContactForm() {
       {/* 모달들 */}
       <SubmitConfirmModal
         isOpen={showConfirmModal}
-        onCancel={() => setShowConfirmModal(false)}
+        onCancel={handleCancelSubmit}
         onConfirm={handleConfirmSubmit}
       />
 
