@@ -1,1 +1,3 @@
-export { default } from "./FormField";
+import FormField from './FormField';
+
+export default FormField;

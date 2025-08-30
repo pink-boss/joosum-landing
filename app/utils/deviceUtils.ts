@@ -1,9 +1,9 @@
 export const isMobileDevice = (): boolean => {
-  if (typeof window === "undefined") return false;
+  if (typeof window === 'undefined') return false;
 
   const userAgent = navigator.userAgent || navigator.vendor;
   return /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(
-    userAgent.toLowerCase()
+    userAgent.toLowerCase(),
   );
 };
 
@@ -15,8 +15,8 @@ export const openJoosumApp = (): void => {
 
     if (isIOS) {
       // iOS: 앱 스킴 시도 후 앱스토어로 폴백
-      const appScheme = "joosum://";
-      const appStoreUrl = "https://apps.apple.com/app/joosum/id6450023650";
+      const appScheme = 'joosum://';
+      const appStoreUrl = 'https://apps.apple.com/app/joosum/id6450023650';
 
       // 앱 열기 시도
       window.location.href = appScheme;
@@ -28,15 +28,15 @@ export const openJoosumApp = (): void => {
     } else if (isAndroid) {
       // Android: 인텐트 URL 사용
       const intentUrl =
-        "intent://open#Intent;scheme=joosum;package=com.joosum.app;S.browser_fallback_url=https://play.google.com/store/apps/details?id=com.joosum.app;end";
+        'intent://open#Intent;scheme=joosum;package=com.joosum.app;S.browser_fallback_url=https://play.google.com/store/apps/details?id=com.joosum.app;end';
       window.location.href = intentUrl;
     } else {
       // 기타 모바일 디바이스는 웹으로
-      window.open("https://app.joosum.com/", "_blank");
+      window.open('https://app.joosum.com/', '_blank');
     }
   } else {
     // PC에서는 웹 URL로 이동
-    window.open("https://app.joosum.com/", "_blank");
+    window.open('https://app.joosum.com/', '_blank');
   }
 };
 
@@ -45,7 +45,7 @@ export const redirectToContactWithEmail = (email: string): void => {
   const encodedEmail = encodeURIComponent(email);
   const contactUrl = `/contact?email=${encodedEmail}`;
 
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     window.location.href = contactUrl;
   }
 };

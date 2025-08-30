@@ -9,10 +9,10 @@ function generateContactEmailHtml({
   content,
   additionalInfo,
 }: {
+  additionalInfo?: string;
+  content: string;
   email: string;
   subject: string;
-  content: string;
-  additionalInfo?: string;
 }): string {
   return `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -60,14 +60,17 @@ export interface FormState {
   success?: boolean;
   error?: string;
   errors?: {
-    email?: string[];
-    subject?: string[];
     content?: string[];
+    email?: string[];
     privacy?: string[];
+    subject?: string[];
   };
 }
 
-export async function submitContactForm(prevState: FormState, formData: FormData): Promise<FormState> {
+export async function submitContactForm(
+  prevState: FormState,
+  formData: FormData,
+): Promise<FormState> {
   // 폼 데이터 추출
   const email = formData.get('email') as string;
   const subject = formData.get('subject') as string;
@@ -99,7 +102,6 @@ export async function submitContactForm(prevState: FormState, formData: FormData
   }
 
   try {
-    // TODO: 환경변수 확인
     if (process.env.GMAIL_USER && process.env.GMAIL_APP_PASS) {
       // Gmail SMTP 설정
       const transporter = nodemailer.createTransport({
@@ -141,8 +143,12 @@ export async function submitContactForm(prevState: FormState, formData: FormData
       console.log('내용:', content);
       if (additionalInfo) console.log('부가정보:', additionalInfo);
       console.log('접수 시간:', new Date().toLocaleString('ko-KR'));
-      console.log('GMAIL_USER 또는 GMAIL_APP_PASS가 설정되지 않아 실제 메일은 전송되지 않았습니다.');
-      console.log('Gmail 앱 비밀번호 설정이 필요합니다: https://myaccount.google.com/apppasswords');
+      console.log(
+        'GMAIL_USER 또는 GMAIL_APP_PASS가 설정되지 않아 실제 메일은 전송되지 않았습니다.',
+      );
+      console.log(
+        'Gmail 앱 비밀번호 설정이 필요합니다: https://myaccount.google.com/apppasswords',
+      );
       console.log('==========================');
     }
 

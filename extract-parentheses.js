@@ -34,18 +34,18 @@ function extractParenthesesContentOnly(logString) {
 
 // 테스트용 로그 데이터
 const testLog =
-  "log=@s045,$type,4,$c,0,000000,$bb,0,000442,$hbut,0,$rebut,0,$vol,0,0,$pbut,1,$put,0,$area,1,1,(01.06.03.2486),$area,2,1,(00),$area,3,1,(01.06.09.2487),$area,4,1,(00),$@e";
+  'log=@s045,$type,4,$c,0,000000,$bb,0,000442,$hbut,0,$rebut,0,$vol,0,0,$pbut,1,$put,0,$area,1,1,(01.06.03.2486),$area,2,1,(00),$area,3,1,(01.06.09.2487),$area,4,1,(00),$@e';
 
 // 함수 테스트
-console.log("원본 로그:");
+console.log('원본 로그:');
 console.log(testLog);
-console.log("\n괄호 포함 추출 결과:");
+console.log('\n괄호 포함 추출 결과:');
 console.log(extractParenthesesContent(testLog));
-console.log("\n괄호 내용만 추출 결과:");
+console.log('\n괄호 내용만 추출 결과:');
 console.log(extractParenthesesContentOnly(testLog));
 
 // 모듈로 내보내기 (Node.js 환경에서 사용할 경우)
-if (typeof module !== "undefined" && module.exports) {
+if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     extractParenthesesContent,
     extractParenthesesContentOnly,

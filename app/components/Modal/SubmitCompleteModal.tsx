@@ -15,16 +15,16 @@ export default function SubmitCompleteModal({
         className="absolute inset-0 bg-black opacity-[0.5]"
         onClick={onClose}
       />
-      <div className="relative bg-white rounded-[10px] w-[90vw] max-w-[422px] h-auto min-h-[200px] p-4 md:p-5">
-        <div className="flex flex-col h-full">
-          <div className="flex-1 flex items-center justify-center py-6 md:py-8">
-            <h2 className="text-xl md:text-2xl font-bold text-black text-center">
+      <div className="relative h-auto min-h-[200px] w-[90vw] max-w-[422px] rounded-[10px] bg-white p-4 md:p-5">
+        <div className="flex h-full flex-col">
+          <div className="flex flex-1 items-center justify-center py-6 md:py-8">
+            <h2 className="text-center text-xl font-bold text-black md:text-2xl">
               문의가 제출 되었습니다.
             </h2>
           </div>
           <button
+            className="bg-primary-500 h-12 w-full cursor-pointer rounded-lg text-sm font-bold text-white transition-opacity hover:opacity-80 md:h-14 md:text-base"
             onClick={onClose}
-            className="w-full h-12 md:h-14 bg-primary-500 text-white rounded-lg font-bold text-sm md:text-base hover:opacity-80 transition-opacity cursor-pointer"
           >
             확인
           </button>

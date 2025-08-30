@@ -14,13 +14,13 @@ export default function FormField({
   description,
 }: FormFieldProps) {
   return (
-    <div className="flex flex-col md:flex-row gap-3 md:gap-5">
-      <div className="md:w-[280px] flex items-start pt-1 md:pt-3">
-        <span className="text-lg md:text-xl font-semibold text-black">
+    <div className="flex flex-col gap-3 md:flex-row md:gap-5">
+      <div className="flex items-start pt-1 md:w-[280px] md:pt-3">
+        <span className="text-lg font-semibold text-black md:text-xl">
           {label}
         </span>
         {required && (
-          <span className="text-lg md:text-xl font-semibold text-black ml-1 -mt-0.5">
+          <span className="-mt-0.5 ml-1 text-lg font-semibold text-black md:text-xl">
             *
           </span>
         )}
@@ -28,7 +28,7 @@ export default function FormField({
       <div className="flex-1 text-black">
         {children}
         {description && (
-          <p className="mt-1 text-sm md:text-base text-neutral-550 font-medium">
+          <p className="text-neutral-550 mt-1 text-sm font-medium md:text-base">
             {description}
           </p>
         )}
