@@ -31,12 +31,14 @@ export default function SubmitConfirmModal({
           <div className="flex gap-3">
             <button
               className="h-12 flex-1 cursor-pointer rounded-lg bg-[#bbbbbb] text-sm font-bold text-white transition-opacity hover:opacity-80 md:h-14 md:text-base"
+              data-testid="cancel_submit_contact"
               onClick={onCancel}
             >
               취소
             </button>
             <button
               className="bg-primary-500 h-12 flex-1 cursor-pointer rounded-lg text-sm font-bold text-white transition-opacity hover:opacity-80 md:h-14 md:text-base"
+              data-testid="confirm_submit_contact"
               onClick={onConfirm}
             >
               확인

@@ -1,6 +1,7 @@
 export type FooterLinkTitle = {
   href: string;
   newTab?: boolean;
+  testId: string;
   titleLower?: string;
   titleUpper: string;
 };
@@ -9,6 +10,7 @@ export type FooterLink = { isBorder?: boolean } | FooterLinkTitle;
 
 export const footerLinks: FooterLink[] = [
   {
+    testId: 'detailPrivacyPolicy_footer_landing',
     titleUpper: '개인정보',
     titleLower: '처리방침',
     href: 'https://joosum.notion.site/a078243be717462296cbe664a121212c',
@@ -20,17 +22,20 @@ export const footerLinks: FooterLink[] = [
     titleLower: '이용약관',
     href: 'https://joosum.notion.site/6df241a6e3174b8fbfc7933a506a0b1e',
     newTab: true,
+    testId: 'agreeTermsOfService_footer_landing',
   },
   { isBorder: true },
   {
     titleUpper: '이용문의',
     href: '/contact',
+    testId: 'contact_footer_landing',
   },
   { isBorder: true },
   {
     titleUpper: '공지사항',
     href: 'https://joosum.notion.site/d1bf0517402744ee804c7d645a472610',
     newTab: true,
+    testId: 'notice_footer_landing',
   },
 ];
 

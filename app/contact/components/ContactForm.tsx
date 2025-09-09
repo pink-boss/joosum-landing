@@ -246,6 +246,7 @@ export default function ContactForm() {
           {/* 제출 버튼 */}
           <div className="flex justify-center pt-6 md:pt-8">
             <button
+              data-testid="submit_contact"
               disabled={isSubmitting || !isFormValid}
               type="submit"
               className={`h-12 w-full max-w-[335px] rounded-lg text-base font-semibold transition-all duration-200 md:h-14 md:text-lg ${

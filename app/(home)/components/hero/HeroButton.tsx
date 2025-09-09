@@ -12,6 +12,7 @@ export default function HeroButton() {
 
   return (
     <button
+      data-testid="start_main_landing"
       onClick={() => {
         openJoosumApp();
         handleClickStart();

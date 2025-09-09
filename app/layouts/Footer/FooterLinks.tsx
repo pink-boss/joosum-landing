@@ -47,6 +47,7 @@ export default function FooterLinks() {
             <Link
               key={index}
               className={clsx('my-auto flex-1 text-center text-black')}
+              data-testid={link.testId}
               href={link.href}
               target={link.newTab ? '_blank' : undefined}
               onClick={() => handleLinkClick(link.titleUpper)}

@@ -9,7 +9,7 @@ import {
 
 export default function Home() {
   return (
-    <div className="w-full">
+    <div className="w-full" data-testid="landing">
       <HeroSection />
       <UsageSection />
       <FeatureSection />

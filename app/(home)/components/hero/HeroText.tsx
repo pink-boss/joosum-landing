@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 
-import Button from './HeroButton';
+import HeroButton from './HeroButton';
 
 export default function HeroText() {
   return (
@@ -31,7 +31,7 @@ export default function HeroText() {
       >
         지금 바로 경험하세요!
       </h2>
-      <Button />
+      <HeroButton />
     </div>
   );
 }

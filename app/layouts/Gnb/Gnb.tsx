@@ -39,6 +39,7 @@ export default function Gnb() {
   const handleAppDownloadGNB = () => {
     sendGTMEvent({ event: 'click.download_gnb_landing' });
   };
+
   const handleClickContact = () => {
     sendGTMEvent({ event: 'click.contact_gnb_landing' });
   };
@@ -55,6 +56,7 @@ export default function Gnb() {
   return (
     <>
       <header
+        data-testid="gnb_landing"
         className={clsx(
           'relative z-50 h-fit w-full border-b border-neutral-100 bg-white',
           'px-5 py-2',
@@ -65,6 +67,7 @@ export default function Gnb() {
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <Link
             className="flex items-center gap-2 transition-opacity hover:opacity-80"
+            data-testid="logo_gnb_landing"
             href="/"
             onClick={handleClickLogo}
           >
@@ -141,6 +144,7 @@ export default function Gnb() {
           {/* 태블릿/PC에서는 메뉴 버튼들 */}
           <div className={clsx('hidden items-center', 'md:flex md:gap-4')}>
             <Link
+              data-testid="contact_gnb_landing"
               href="/contact"
               onClick={handleClickContact}
               className={clsx(
@@ -152,6 +156,7 @@ export default function Gnb() {
               <div className="w-[72px]">문의하기</div>
             </Link>
             <button
+              data-testid="download_gnb_landing"
               onClick={openModal}
               className={clsx(
                 'bg-primary-400 hover:bg-primary-500 cursor-pointer rounded-lg font-semibold text-white transition-colors',
@@ -162,6 +167,7 @@ export default function Gnb() {
               앱 다운로드
             </button>
             <button
+              data-testid="start_gnb_landing"
               onClick={handleClickStart}
               className={clsx(
                 'bg-primary-500 hover:bg-primary-700 cursor-pointer rounded-lg font-semibold text-white transition-colors',
@@ -193,6 +199,7 @@ export default function Gnb() {
             >
               <Link
                 className="text-text-80 hover:text-primary-400 cursor-pointer text-[28px] font-extrabold transition-colors"
+                data-testid="contact_gnb_landing"
                 href="/contact"
                 onClick={() => {
                   setIsMenuOpen(false);
@@ -203,6 +210,7 @@ export default function Gnb() {
               </Link>
               <button
                 className="text-text-80 hover:text-primary-400 cursor-pointer text-[28px] font-extrabold transition-colors"
+                data-testid="start_gnb_landing"
                 onClick={() => {
                   setIsMenuOpen(false);
                   handleClickStart();
@@ -212,6 +220,7 @@ export default function Gnb() {
               </button>
               <button
                 className="text-text-80 hover:text-primary-400 cursor-pointer text-[28px] font-extrabold transition-colors"
+                data-testid="download_gnb_landing"
                 onClick={() => {
                   setIsMenuOpen(false);
                   openModal();

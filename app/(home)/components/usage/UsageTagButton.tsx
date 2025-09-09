@@ -13,6 +13,7 @@ export default function UsageTagButton({
 }: UsageTagButtonProps) {
   return (
     <button
+      data-testid="usageTab_main_landing"
       onClick={onClick}
       className={clsx(
         'cursor-pointer rounded-full font-bold transition-colors',

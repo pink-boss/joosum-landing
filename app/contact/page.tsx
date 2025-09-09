@@ -17,7 +17,10 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="w-full bg-neutral-50 py-8 md:py-12 lg:py-[60px]">
+    <div
+      className="w-full bg-neutral-50 py-8 md:py-12 lg:py-[60px]"
+      data-testid="contact"
+    >
       <div className="mx-auto max-w-[1240px] px-5 md:px-10 lg:px-20">
         {/* 헤더 */}
         <div className="mb-8 text-center md:mb-10">
