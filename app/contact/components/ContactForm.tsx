@@ -1,6 +1,6 @@
 'use client';
 
-import { sendGTMEvent } from '@next/third-parties/google';
+// import { sendGTMEvent } from '@next/third-parties/google';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 import {
@@ -71,7 +71,7 @@ export default function ContactForm() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    sendGTMEvent({ event: 'click.submit_contact' });
+    // sendGTMEvent({ event: 'click.submit_contact' });
 
     // 브라우저 validation 실행
     if (!validateForm({ email, subject, content, privacyChecked })) {
@@ -89,7 +89,7 @@ export default function ContactForm() {
 
   // 제출 확인
   const handleConfirmSubmit = () => {
-    sendGTMEvent({ event: 'click.confirm_submit_contact' });
+    // sendGTMEvent({ event: 'click.confirm_submit_contact' });
     setShowConfirmModal(false);
     const form = document.getElementById('contact-form') as HTMLFormElement;
     if (form) {
@@ -101,7 +101,7 @@ export default function ContactForm() {
   };
 
   const handleCancelSubmit = () => {
-    sendGTMEvent({ event: 'click.cancel_submit_contact' });
+    // sendGTMEvent({ event: 'click.cancel_submit_contact' });
     setShowConfirmModal(false);
   };
 

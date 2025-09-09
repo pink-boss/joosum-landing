@@ -1,6 +1,6 @@
 'use client';
 
-import { sendGTMEvent } from '@next/third-parties/google';
+// import { sendGTMEvent } from '@next/third-parties/google';
 import Link from 'next/link';
 
 import clsx from 'clsx';
@@ -8,22 +8,22 @@ import clsx from 'clsx';
 import { footerLinks } from './constants';
 
 export default function FooterLinks() {
-  const handleLinkClick = (titleUpper: string) => {
-    switch (titleUpper) {
-      case '개인정보':
-        sendGTMEvent({ event: 'click.detailPrivacyPolicy_footer_landing' });
-        break;
-      case '서비스':
-        sendGTMEvent({ event: 'click.agreeTermsOfService_footer_landing' });
-        break;
-      case '이용문의':
-        sendGTMEvent({ event: 'click.contact_footer_landing' });
-        break;
-      case '공지사항':
-        sendGTMEvent({ event: 'click.notice_footer_landing' });
-        break;
-    }
-  };
+  // const handleLinkClick = (titleUpper: string) => {
+  //   switch (titleUpper) {
+  //     case '개인정보':
+  //       sendGTMEvent({ event: 'click.detailPrivacyPolicy_footer_landing' });
+  //       break;
+  //     case '서비스':
+  //       sendGTMEvent({ event: 'click.agreeTermsOfService_footer_landing' });
+  //       break;
+  //     case '이용문의':
+  //       sendGTMEvent({ event: 'click.contact_footer_landing' });
+  //       break;
+  //     case '공지사항':
+  //       sendGTMEvent({ event: 'click.notice_footer_landing' });
+  //       break;
+  //   }
+  // };
 
   return (
     <div
@@ -50,7 +50,7 @@ export default function FooterLinks() {
               data-testid={link.testId}
               href={link.href}
               target={link.newTab ? '_blank' : undefined}
-              onClick={() => handleLinkClick(link.titleUpper)}
+              // onClick={() => handleLinkClick(link.titleUpper)}
             >
               <span className="hidden lg:block">{link.titleUpper}</span>
               <span className="block lg:hidden">

@@ -1,21 +1,19 @@
 'use client';
 
-import { sendGTMEvent } from '@next/third-parties/google';
-
 import { openJoosumApp } from '@/utils/deviceUtils';
 import clsx from 'clsx';
 
 export default function HeroButton() {
-  const handleClickStart = () => {
-    sendGTMEvent({ event: 'click.start_main_landing' });
-  };
+  // const handleClickStart = () => {
+  //   sendGTMEvent({ event: 'click.start_main_landing' });
+  // };
 
   return (
     <button
       data-testid="start_main_landing"
       onClick={() => {
         openJoosumApp();
-        handleClickStart();
+        // handleClickStart();
       }}
       className={clsx(
         'text-primary-500 cursor-pointer rounded-xl bg-white font-bold transition-colors hover:bg-neutral-50',

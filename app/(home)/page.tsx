@@ -2,7 +2,6 @@ import {
   DownloadSection,
   FeatureSection,
   HeroSection,
-  LandingEvent,
   ReviewSection,
   UsageSection,
 } from './components';
@@ -15,7 +14,7 @@ export default function Home() {
       <FeatureSection />
       <ReviewSection />
       <DownloadSection />
-      <LandingEvent />
+      {/* <LandingEvent /> */}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { sendGTMEvent } from '@next/third-parties/google';
+// import { sendGTMEvent } from '@next/third-parties/google';
 
 import { useState } from 'react';
 
@@ -16,17 +16,17 @@ export default function UsageSection() {
 
   const handlePrevious = () => {
     setCurrentIndex((prev) => (prev === 0 ? usageData.length - 1 : prev - 1));
-    sendGTMEvent({ event: 'click.usageDirection_main_landing' });
+    // sendGTMEvent({ event: 'click.usageDirection_main_landing' });
   };
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev === usageData.length - 1 ? 0 : prev + 1));
-    sendGTMEvent({ event: 'click.usageDirection_main_landing' });
+    // sendGTMEvent({ event: 'click.usageDirection_main_landing' });
   };
 
   const handleTagClick = (index: number) => {
     setCurrentIndex(index);
-    sendGTMEvent({ event: 'click.usageTab_main_landing' });
+    // sendGTMEvent({ event: 'click.usageTab_main_landing' });
   };
 
   const currentData = usageData[currentIndex];

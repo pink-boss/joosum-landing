@@ -1,6 +1,6 @@
 'use client';
 
-import { sendGTMEvent } from '@next/third-parties/google';
+// import { sendGTMEvent } from '@next/third-parties/google';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -27,26 +27,26 @@ export default function Gnb() {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleClickLogo = () => {
-    sendGTMEvent({ event: 'click.logo_gnb_landing' });
-  };
+  // const handleClickLogo = () => {
+  //   sendGTMEvent({ event: 'click.logo_gnb_landing' });
+  // };
 
   const handleClickStart = () => {
     openJoosumApp();
-    sendGTMEvent({ event: 'click.start_gnb_landing' });
+    // sendGTMEvent({ event: 'click.start_gnb_landing' });
   };
 
-  const handleAppDownloadGNB = () => {
-    sendGTMEvent({ event: 'click.download_gnb_landing' });
-  };
+  // const handleAppDownloadGNB = () => {
+  //   sendGTMEvent({ event: 'click.download_gnb_landing' });
+  // };
 
-  const handleClickContact = () => {
-    sendGTMEvent({ event: 'click.contact_gnb_landing' });
-  };
+  // const handleClickContact = () => {
+  //   sendGTMEvent({ event: 'click.contact_gnb_landing' });
+  // };
 
   const openModal = () => {
     setIsModalOpen(true);
-    handleAppDownloadGNB();
+    // handleAppDownloadGNB();
   };
 
   const closeModal = () => {
@@ -69,7 +69,7 @@ export default function Gnb() {
             className="flex items-center gap-2 transition-opacity hover:opacity-80"
             data-testid="logo_gnb_landing"
             href="/"
-            onClick={handleClickLogo}
+            // onClick={handleClickLogo}
           >
             <>
               <Image
@@ -146,7 +146,7 @@ export default function Gnb() {
             <Link
               data-testid="contact_gnb_landing"
               href="/contact"
-              onClick={handleClickContact}
+              // onClick={handleClickContact}
               className={clsx(
                 'hover:text-neutral-550 cursor-pointer text-neutral-600 transition-colors',
                 'text-base',
@@ -203,7 +203,7 @@ export default function Gnb() {
                 href="/contact"
                 onClick={() => {
                   setIsMenuOpen(false);
-                  handleClickContact();
+                  // handleClickContact();
                 }}
               >
                 문의하기
