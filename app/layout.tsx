@@ -2,10 +2,10 @@ import { GoogleTagManager } from '@next/third-parties/google';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 
-import StructuredData from '@/components/StructuredData';
-import WebVitals from '@/components/WebVitals';
-import Footer from '@/layouts/Footer';
-import Gnb from '@/layouts/Gnb';
+import StructuredData from '@/components/structured-data';
+import WebVitals from '@/components/web-vitals';
+import Footer from '@/layouts/footer';
+import Gnb from '@/layouts/gnb';
 
 import './globals.css';
 
@@ -23,18 +23,19 @@ export const metadata: Metadata = {
   },
   description:
     '웹에서 발견한 유용한 링크들을 간편하게 저장하고 정리하세요. 주섬과 함께 나만의 디지털 아카이브를 만들어보세요.',
-  keywords: [
-    '링크 저장',
-    '북마크',
-    '아카이빙',
-    '웹 클리핑',
-    '정보 정리',
-    '주섬',
-    'joosum',
-  ],
+  keywords: ['링크 저장', '북마크', '아카이빙', '웹 클리핑', '정보 정리', '주섬', 'joosum'],
   authors: [{ name: 'Joosum Team' }],
   creator: 'Joosum',
   publisher: 'Joosum',
+  appleWebApp: {
+    capable: true,
+    title: '주섬',
+    statusBarStyle: 'default',
+  },
+  icons: {
+    apple: '/apple-icon.png',
+    shortcut: '/favicon.ico',
+  },
   formatDetection: {
     email: false,
     address: false,
@@ -54,7 +55,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/og-image.png',
+        url: '/opengraph-image',
         width: 1200,
         height: 630,
         alt: '주섬 - 간편한 링크 아카이빙 서비스',
@@ -65,7 +66,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: '주섬 - 간편한 링크 아카이빙 서비스',
     description: '웹에서 발견한 유용한 링크들을 간편하게 저장하고 정리하세요.',
-    images: ['/og-image.png'],
+    images: ['/opengraph-image'],
   },
   robots: {
     index: true,
@@ -73,15 +74,8 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1,
-    },
-  },
-  verification: {
-    google: 'google-site-verification-code',
-    other: {
-      'naver-site-verification': 'naver-verification-code',
     },
   },
 };

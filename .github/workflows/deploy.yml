@@ -57,7 +57,7 @@ jobs:
             echo "${{ secrets.ENV }}" > .env
             docker pull joosum.kr.ncr.ntruss.com/joosum-landing:${{ steps.date.outputs.date }}
             docker stop $(docker ps -q -f 'name=landing') || true
-            docker rm landing || true
+            docker rm -f landing 2>/dev/null || true
             # 호스트 3001번을 컨테이너의 3000번 포트로 매핑합니다
             docker run --rm -d -p 3001:3000 \
               --env-file .env \

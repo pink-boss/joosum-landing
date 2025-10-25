@@ -1,10 +1,4 @@
-import {
-  DownloadSection,
-  FeatureSection,
-  HeroSection,
-  ReviewSection,
-  UsageSection,
-} from './components';
+import { DownloadSection, FeatureSection, HeroSection, ReviewSection, UsageSection } from './components';
 
 export default function Home() {
   return (
@@ -14,7 +8,6 @@ export default function Home() {
       <FeatureSection />
       <ReviewSection />
       <DownloadSection />
-      {/* <LandingEvent /> */}
     </div>
   );
 }

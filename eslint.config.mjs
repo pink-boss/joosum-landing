@@ -11,7 +11,7 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  ...compat.extends('next/core-web-vitals', 'next/typescript'),
+  ...compat.extends('next/core-web-vitals', 'next/typescript', 'prettier'),
   {
     plugins: {
       perfectionist,
@@ -31,23 +31,27 @@ const eslintConfig = [
             },
             {
               groupName: 'api',
-              elementNamePattern: ['@/actions/.+'],
+              elementNamePattern: ['@/actions/.+', '@/services/.+'],
             },
             {
               groupName: 'app',
-              elementNamePattern: ['@/hooks/.+'],
+              elementNamePattern: [],
             },
             {
               groupName: 'components',
               elementNamePattern: ['@/components/.+', '@/layouts/.+'],
             },
             {
-              groupName: 'util',
-              elementNamePattern: ['@/utils/.+'],
+              groupName: 'utils',
+              elementNamePattern: ['@/utils/.+', '@/hooks/.+', '@/hooks', '@/constants'],
             },
             {
-              groupName: 'util-third-parties',
-              elementNamePattern: ['clsx'],
+              groupName: 'assets',
+              elementNamePattern: ['@/assets/.+'],
+            },
+            {
+              groupName: 'types',
+              elementNamePattern: ['@/types/.+'],
             },
           ],
           groups: [
@@ -55,11 +59,14 @@ const eslintConfig = [
             'react',
             'type-import',
             ['value-builtin', 'value-external'],
-            ['value-internal', 'app'],
-            ['components'],
+            'value-internal',
+            'app',
             'api',
-            ['util-third-parties', 'util'],
+            'components',
+            'utils',
+            'assets',
             'type-internal',
+            'types',
             ['value-parent', 'value-sibling', 'value-index'],
             ['type-parent', 'type-sibling', 'type-index'],
             'value-style',
@@ -88,14 +95,7 @@ const eslintConfig = [
               groupName: 'ref',
             },
           ],
-          groups: [
-            'shorthand-prop',
-            'key',
-            'ref',
-            'unknown',
-            'callback',
-            'multiline-prop',
-          ],
+          groups: ['shorthand-prop', 'key', 'ref', 'unknown', 'callback', 'multiline-prop'],
           order: 'asc',
           type: 'alphabetical',
         },

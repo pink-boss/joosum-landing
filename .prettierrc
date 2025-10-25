@@ -1,8 +1,9 @@
 {
   "tabWidth": 2,
+  "printWidth": 120,
   "useTabs": false,
   "singleQuote": true,
   "trailingComma": "all",
-  "tailwindFunctions": ["clsx"],
+  "tailwindFunctions": ["clsx", "classnames"],
   "plugins": ["prettier-plugin-tailwindcss"]
 }
