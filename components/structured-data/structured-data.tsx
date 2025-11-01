@@ -5,7 +5,7 @@ export default function StructuredData() {
     name: '주섬',
     alternateName: 'Joosum',
     url: 'https://joosum.com',
-    logo: 'https://joosum.com/logo.png',
+    logo: 'https://joosum.com/images/gnb-logo-icon.png',
     description: '웹에서 발견한 유용한 링크들을 간편하게 저장하고 정리하는 서비스',
     foundingDate: '2023',
     contactPoint: {

@@ -30,7 +30,6 @@ export default function Gnb() {
   }, []);
 
   const handleOpen = useCallback(() => {
-    console.log('handleOpen');
     setIsModalOpen(true);
   }, []);
 
