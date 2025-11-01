@@ -1,4 +1,4 @@
-# Joosum Static Landing Page
+# Joosum Landing Page
 
 주섬 서비스의 정적 랜딩 페이지입니다.
 
