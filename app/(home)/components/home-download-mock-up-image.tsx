@@ -18,18 +18,17 @@ export default function HomeDownloadMockupImage() {
       <div className="relative hidden lg:block">
         <div
           className={clsx(
-            'absolute top-133 z-10 h-68.5 w-4/5 max-w-270.75',
+            'absolute top-133 z-10 h-68.5 left-[10.5px] w-full max-w-270.75',
             'bg-linear-to-b from-[#d9d9d9]/0 to-[#737373]',
-            'left-1/2 -translate-x-1/2',
           )}
         />
         <Image
           alt=""
-          className="!h-[793.85px] w-[1315.78px]"
-          height={793.85}
-          sizes="(min-width: 1240px) 1315.78px, 0px"
-          src="/images/home-hero-pc.png"
-          width={1315.78}
+          className="!h-[864px] w-[1104px]"
+          height={864}
+          sizes="(min-width: 1240px) 1104px, 0px"
+          src="/images/home-download-pc.png"
+          width={1104}
         />
       </div>
     </div>
