@@ -63,3 +63,4 @@ jobs:
               --env-file .env \
               -e PORT=3000 \
               --name landing joosum.kr.ncr.ntruss.com/joosum-landing:${{ steps.date.outputs.date }}
+            docker image prune -f >/dev/null || true
